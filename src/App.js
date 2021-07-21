@@ -36,19 +36,26 @@ class App extends Component{
       console.log("vowelsArray:", vowelsArray)
 
       // Remember: console.log is your friend :)
-      //let pigLatinWord = ""
+      
       
       if(currentWord[0]===vowelsArray[0]){
-          console.log(`${currentWord}way`)
+          return `${currentWord}way`
+          
       }else if (currentWord.slice(0,2) === 'qu'){  
-        console.log(`${currentWord.slice(2,currentWord.length)}quay`)
+
+        return `${currentWord.slice(2,currentWord.length)}quay`
       }else if (currentWord.indexOf("y") !== -1 && vowelsArray.length === 0){
-        console.log(`y${currentWord.slice(0,currentWord.indexOf('y'))}ay`)
-      }else{console.log("we are a non special consonant")}
-       
+
+        return `y${currentWord.slice(0,currentWord.indexOf('y'))}ay`
+      }else {
+        return `${currentWord.slice(currentWord.indexOf(vowelsArray[0]),currentWord.length)}${currentWord.slice(0,currentWord.indexOf(vowelsArray[0]))}ay`}
+      // need to return oughthray from through
+      // what we have right now (thray)
+      // {console.log(currentWord.unshift("ay"))}
+
 
       // ACTION ITEM: change the value of currentWord to the name of whatever variable you made containing your Pig Latin'd word
-      return currentWord
+      
     })
 
 
