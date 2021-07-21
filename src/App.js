@@ -37,7 +37,7 @@ class App extends Component{
 
       // Remember: console.log is your friend :)
       
-      
+      // fix
       if(currentWord[0]===vowelsArray[0]){
           return `${currentWord}way`
           
