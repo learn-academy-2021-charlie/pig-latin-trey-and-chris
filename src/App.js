@@ -9,7 +9,7 @@ class App extends Component{
     this.state = {
       // "phrase" is the text entered by the user - right now there are test words hard coded to make the process of testing your code faster and easier
       // ACTION ITEM: when you are ready for your full user experience, delete the test words so phrase is assigned an empty string
-      phrase: "alpha through yummy squeal queen fry",
+      phrase: "",
       // "phraseTranslated" is what the user will see appear on the page as Pig Latin, it starts as the preset message and updates when your user clicks the "submit" button
       phraseTranslated: "This is where your translated sentence will appear."
     }
@@ -29,7 +29,10 @@ class App extends Component{
     let translatedWordsArray = userInput.map(currentWord => {
       // ACTION ITEM: use "currentWord" as a starting point for your code
       console.log("currentWord:", currentWord)
-
+      let punc = currentWord.split("").filter(puncuate => {
+       return puncuate === "." || puncuate === "?" || puncuate === "!"
+      })
+        console.log("puncuate:",punc)
       let vowelsArray = currentWord.split("").filter(vowel => {
         return vowel === "a" || vowel === "e" || vowel === "i" || vowel === "o" || vowel === "u"
       })
@@ -38,24 +41,41 @@ class App extends Component{
       // Remember: console.log is your friend :)
       
       // fix
-      if(currentWord[0]===vowelsArray[0]){
-          return `${currentWord}way`
-          
-      }else if (currentWord.slice(0,2) === 'qu'){  
-
-        return `${currentWord.slice(2,currentWord.length)}quay`
-      }else if (currentWord.indexOf("y") !== -1 && vowelsArray.length === 0){
-
-        return `y${currentWord.slice(0,currentWord.indexOf('y'))}ay`
-      }else {
-        return `${currentWord.slice(currentWord.indexOf(vowelsArray[0]),currentWord.length)}${currentWord.slice(0,currentWord.indexOf(vowelsArray[0]))}ay`}
-      // need to return oughthray from through
+      //Need to make the nested if repeatable. 
+        if(punc[0]){
+          var onlyString = currentWord.slice(0,currentWord.lastIndexOf(punc))
+          console.log(onlyString)
+          if(onlyString[0]===vowelsArray[0]){
+            return `${onlyString}way${punc}`          
+         }else if (onlyString.slice(0,2) === 'qu'){  
+            return `${onlyString.slice(2,onlyString.length)}quay${punc}`
+        }else if (onlyString.indexOf("y") !== -1 && vowelsArray.length === 0){
+            return `y${onlyString.slice(0,onlyString.indexOf('y'))}ay${punc}`
+        }else {
+            return `${onlyString.slice(onlyString.indexOf(vowelsArray[0]),onlyString.length)}${onlyString.slice(0,onlyString.indexOf(vowelsArray[0]))}ay${punc}`}
+        }       
+        else{        
+          if(currentWord[0]===vowelsArray[0]){
+            return `${currentWord}way`          
+         }else if (currentWord.slice(0,2) === 'qu'){  
+            return `${currentWord.slice(2,currentWord.length)}quay`
+        }else if (currentWord.indexOf("y") !== -1 && vowelsArray.length === 0){
+            return `y${currentWord.slice(0,currentWord.indexOf('y'))}ay`
+        }else {
+            return `${currentWord.slice(currentWord.indexOf(vowelsArray[0]),currentWord.length)}${currentWord.slice(0,currentWord.indexOf(vowelsArray[0]))}ay`}
+        }
+          // }
+        //   else{  
+        //     return  "not here" 
+        // }
+          // need to return oughthray from through
       // what we have right now (thray)
       // {console.log(currentWord.unshift("ay"))}
 
 
       // ACTION ITEM: change the value of currentWord to the name of whatever variable you made containing your Pig Latin'd word
-      
+    
+
     })
 
 
