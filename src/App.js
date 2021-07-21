@@ -16,7 +16,9 @@ class App extends Component{
   }
 
   // The "myPigLatinCodeHere" function is where you will put your logic to convert the sentence entered by the user to Pig Latin
-
+  // test input "alpha through yummy squeal queen fry" should equal "alphaway oughthray ummyyay uealsqay eenquay yfray " 
+  // after array of string [vowels array] is complete we need to only take the first vowel of the string. 
+  // 
   myPigLatinCodeHere = () => {
     // the variable "userInput" will contain the text input from the user modified into an array of words
     // no need to change this variable
@@ -33,10 +35,17 @@ class App extends Component{
       })
       console.log("vowelsArray:", vowelsArray)
 
-      // your code here!
-
       // Remember: console.log is your friend :)
-
+      //let pigLatinWord = ""
+      
+      if(currentWord[0]===vowelsArray[0]){
+          console.log(`${currentWord}way`)
+      }else if (currentWord.slice(0,2) === 'qu'){  
+        console.log(`${currentWord.slice(2,currentWord.length)}quay`)
+      }else if (currentWord.indexOf("y") !== -1 && vowelsArray.length === 0){
+        console.log(`y${currentWord.slice(0,currentWord.indexOf('y'))}ay`)
+      }else{console.log("we are a non special consonant")}
+       
 
       // ACTION ITEM: change the value of currentWord to the name of whatever variable you made containing your Pig Latin'd word
       return currentWord
